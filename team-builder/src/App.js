@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import ReactDom from "react-dom";
 import './App.css';
 
+import Form from "./components/Form";
+import TeamForm from "./components/TeamForm";
+import data from "./data";
+
 function App() {
+  const [form, setForm] = useState(data);
+  const addNewForm = form => {
+    setForm([...form, form]);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Team Form</h1>
+      <TeamForm addNewForm={addNewForm} />
+      <Form formList={form} />
     </div>
   );
 }
