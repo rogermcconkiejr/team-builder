@@ -1,45 +1,48 @@
 import React, { useState } from "react";
 
-const TeamForm = props => {
-    const [form, setForm] = useState({ Name: "", Role: "", Email: ""});
+const AddMember = props => {
+    const [member, setMember] = useState({ Name: "", Role: "", Email: ""});
     const changeHandler = event => {
         console.log(event.target.value);
-        setForm({...form, [event.target.name]: event.target.value});
+        setMember({...member, [event.target.name]: event.target.value});
     }
     const submitForm = event => {
         event.preventDefault();
-        const newForm = {
-            ...form,
+        const newMember = {
+            ...member,
             id: Date.now()
         };
-        props.addNewForm(newForm);
-        setForm({name:"", role: "", email:""});
+        props.addNewMember(newMember);
+        setMember({name:"", role: "", email:""});
     };
     return (
         <form onSubmit={submitForm}>
             <label htmlFor="name">Name</label>
             <input
                 type="text"
+                name="name"
                 placeholder="name"
-                value={form.name}
+                value={member.name}
                 onChange={changeHandler}
                 />
             <label htmlFor="role">Role</label>
             <input
             type="text"
+            name="role"
             placeholder="role"
-            value={form.role}
+            value={member.role}
             onChange={changeHandler}
             />
             <label htmlFor="email">Email</label>
             <input
             type="email"
+            name="email"
             placeholder="email"
-            value={form.role}
+            value={member.email}
             onChange={changeHandler}
             />
             <button type="submit">Add Team Member</button>
         </form>
     )
 }
-export default TeamForm;
+export default AddMember;

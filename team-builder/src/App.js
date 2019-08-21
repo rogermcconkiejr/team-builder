@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
-import ReactDom from "react-dom";
 import './App.css';
 
-import Form from "./components/Form";
-import TeamForm from "./components/TeamForm";
+import Member from "./components/Member";
+import AddMember from "./components/AddMember";
 import data from "./data";
 
 function App() {
-  const [form, setForm] = useState(data);
-  const addNewForm = form => {
-    setForm([...form, form]);
+  const [members, setMembers] = useState(data);
+  const addNewMember = member => {
+    setMembers([...members, member]);
   }
   return (
     <div className="App">
       <h1>Team Form</h1>
-      <TeamForm addNewForm={addNewForm} />
-      <Form formList={form} />
+      <AddMember addNewMember={addNewMember} />
+      <Member memberList={members} />
     </div>
   );
 }
